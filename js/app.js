@@ -1,3 +1,5 @@
+"use strict";
+
 // Enemies our player must avoid
 var Enemy = function(x,y,speed) {
     // Variables applied to each of our instances go here,
@@ -29,7 +31,14 @@ Enemy.prototype.update = function(dt) {
        player.y < this.y + 25 &&
        30 + player.y > this.y) {
        player.x = 200;
-       player.y = 380;
+       player.y = 380; 
+        
+     
+    // reset function (not working for me)
+    /*function reset(){
+        player.x = 256;
+        player.y = 380;
+    } */     
         
         
         // change background color after collison between player and enemies
@@ -38,9 +47,10 @@ Enemy.prototype.update = function(dt) {
         setTimeout(function(){
             document.querySelector('body').style.backgroundColor = 'white';
         }, 200);
+}
     };
     
-};
+
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -52,7 +62,7 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var player = function(x,y,speed){
+var Player = function(x,y,speed){
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -60,7 +70,7 @@ var player = function(x,y,speed){
     
 };
 
-player.prototype.update = function() {
+Player.prototype.update = function() {
     //prevent player to go off canvas
     if(this.y > 380) {
         this.y = 380;
@@ -74,17 +84,19 @@ player.prototype.update = function() {
         this.x = 0;
     }
     
+    //check player has reached top of canvas then reset.
     if(this.y < 0){
         this.x = 200;
         this.y = 380;
-    }
+       // reset();
+    } 
 };
 
-player.prototype.render = function(){
+Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite),this.x,this.y);
 };
 
-player.prototype.handleInput = function(keyPress){
+Player.prototype.handleInput = function(keyPress){
     switch (keyPress) {
         case 'left':
             this.x -= this.speed + 50;
@@ -93,7 +105,7 @@ player.prototype.handleInput = function(keyPress){
             this.y -= this.speed +30;
             break;
         case 'right':
-            this.x += this.spedd +50;
+            this.x += this.speed +50;
             break;
         case 'down':
             this.y += this.speed +30;
@@ -106,31 +118,13 @@ player.prototype.handleInput = function(keyPress){
 var allEnemies = [];
 // Place the player object in a variable called player
 var enemyPosition = [60, 140, 220];
-var player = new player(200, 380, 50);
+var player = new Player(200, 380, 50);
 var enemy;
 
 enemyPosition.forEach(function(posY){
-    enemy = new enemy(0,posY,100 + Math.floor(Math.random() * 512));
+    enemy = new Enemy(0,posY,100 + Math.floor(Math.random() * 512));
     allEnemies.push(enemy);
 });
-
-const modal = document.querySelector('.modal');
-
-        const closeBtn = document.querySelector('.close');
-
-        closeBtn.addEventListener('click', () => modal.style.display = "none");
-
-        /* Use the browser's requestAnimationFrame function to call this
-         * function again as soon as the browser is able to draw another frame.
-         */
-
-         if (player.complete === true) {
-           console.log('GAME OVER');
-           win.cancelAnimationFrame(id);
-           closeBtn.modal.style.display = "block";
-         } else {
-           id = win.requestAnimationFrame(main);
-         } 
 
 
 // This listens for key presses and sends the keys to your
