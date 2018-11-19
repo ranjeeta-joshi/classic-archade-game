@@ -18,3 +18,13 @@ For detailed instructions on how to get started, check out this [guide](https://
 ## Contributing
 
 This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+
+<h2>Classic Arcade Game</h2>
+
+<p>The game has to be clone from my GitHub repo: <href>https://github.com/ranjeeta-joshi/classic-archade-game</href>
+    The game is developed using Javascript,HTML and CSS.</p>
+    
+<h2>How to Play Game?</h2>
+<p>Use arrow Keys Up,Down,left and right keys to move player. You have boy character image which is player he has to be moved using arrows key to reach water without colliding with bugs which are coming on player way.This way player can win the game.</p>
+
+<h2>Thanks for support.! Enjoy Playing.! :)</h2>
